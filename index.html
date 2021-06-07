@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <title>reveal.js</title>
+
+    <link rel="stylesheet" href="dist/reset.css" />
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="dist/theme/black.css" />
+
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="plugin/highlight/monokai.css" />
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section
+          data-background-image="images/ouroboros1.png"
+          data-background-size="contain"
+          data-background-color="white"
+        >
+          <div
+            id="title"
+            style="
+              border-radius: 15px;
+              background: rgba(255, 255, 255, 0.8);
+              padding: 20px;
+            "
+          >
+            <div class="title-text-box">
+              <b>
+                <h3 style="color: rgb(80, 80, 80); text-transform: none">
+                  Unraveling the Snake: Python Environment Management in *nix
+                </h3>
+                <p style="color: rgb(80, 80, 80)">James Stevenson</p>
+              </b>
+            </div>
+          </div>
+        </section>
+        <section>
+          <h3>Motivation</h3>
+          <img data-src="images/xkcd.png" />
+        </section>
+        <section>
+          <h3>Outline</h3>
+          <p></p>
+          <ul>
+            <li>History of *nix</li>
+            <li>The *nix Ecosystem</li>
+            <li>Python Environments</li>
+            <li>Actionable Information</li>
+          </ul>
+        </section>
+
+        <!-- *nix history -->
+        <section>
+          <section>
+            <h3>The Beginning: Bell Labs</h3>
+            <p>
+            <img data-src="images/thompson-and-ritchie.jpg" />
+            <p>
+            <ul>
+              <li>Late 1960s: Multics :(</li>
+              <li>1969: Ken Thompson goes rogue</li>
+              <li>1970: Bell Labs acquiesces</li>
+              <li>1971: UNIX is rewritten in C (portable)</li>
+            </ul>
+          </section>
+          <section>
+              <h3>UNIX introduces:</h3>
+              <ul>
+                  <li>ls</li>
+                  <li>ln</li>
+                  <li>rm</li>
+                  <li>grep</li>
+                  <li>man</li>
+                  <li>sed</li>
+              </ul>
+          </section>
+          <section>
+              <h3>BSD introduces:</h3>
+              <ul>
+                  <li>vi</li>
+                  <li>virtual memory</li>
+                  <li>TCP/IP support</li>
+              </ul>
+          </section>
+        </section>
+      </div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
+      });
+    </script>
+  </body>
+</html>

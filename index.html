@@ -35,35 +35,68 @@
             <div class="title-text-box">
               <b>
                 <h3 style="color: rgb(80, 80, 80); text-transform: none">
-                  Unraveling the Snake: Python Environment Management in *nix
+                  Unraveling the Snake: Python Environment Management in Unix
                 </h3>
                 <p style="color: rgb(80, 80, 80)">James Stevenson</p>
+                <p style="color: rgb(80, 80, 80)">2021/06/23</p>
               </b>
             </div>
           </div>
         </section>
         <section>
-          <h3>Motivation</h3>
+          <h3>Motivation 1: The Gordian Knot</h3>
           <img data-src="images/xkcd.png" />
+        </section>
+        <section>
+          <h3>Motivation 2: I am tired of googling things</h3>
+          <img data-src="images/so.png" width="60%" />
+        </section>
+        <section>
+          <h3>Motivation 3: It's good to know this stuff in this business</h3>
+          <img data-src="images/cli_delete.png" />
         </section>
         <section>
           <h3>Outline</h3>
           <p></p>
           <ul>
-            <li>History of *nix</li>
-            <li>The *nix Ecosystem</li>
+            <li><strike>History of Unix/Linux/*nix</strike></li>
+            <li>The Ecosystem</li>
             <li>Python Environments</li>
             <li>Actionable Information</li>
           </ul>
         </section>
 
         <!-- *nix history -->
-        <section>
+        <section data-visibility="hidden">
+          <section
+            data-background-image="images/old_books.jpg"
+            data-background-size="contain"
+            data-background-color="black"
+          >
+            <div
+              id="title"
+              style="
+                border-radius: 15px;
+                background: rgba(255, 255, 255, 0.8);
+                padding: 20px;
+              "
+            >
+              <div class="title-text-box">
+                <b>
+                  <h3 style="color: rgb(80, 80, 80); text-transform: none">
+                    History class
+                  </h3>
+                </b>
+              </div>
+            </div>
+          </section>
           <section>
             <h3>The Beginning: Bell Labs</h3>
             <p>
-            <img data-src="images/thompson-and-ritchie.jpg" />
-            <p>
+              <img data-src="images/thompson-and-ritchie.jpg" />
+            </p>
+
+            <p></p>
             <ul>
               <li>Late 1960s: Multics :(</li>
               <li>1969: Ken Thompson goes rogue</li>
@@ -72,23 +105,651 @@
             </ul>
           </section>
           <section>
-              <h3>UNIX introduces:</h3>
-              <ul>
-                  <li>ls</li>
-                  <li>ln</li>
-                  <li>rm</li>
-                  <li>grep</li>
-                  <li>man</li>
-                  <li>sed</li>
-              </ul>
+            <h3>Next steps</h3>
+            <ul>
+              <li>1974-75: Berkeley Standard Distribution</li>
+              <li>1981: AT&T licences UNIX System III for $100</li>
+              <li>
+                1983: DOJ breaks up AT&T, enabling full commercialization of
+                UNIX.
+              </li>
+              <li>Late 80s: "Unix Wars." POSIX standard released in 1988.</li>
+            </ul>
           </section>
           <section>
-              <h3>BSD introduces:</h3>
+            <h3>POSIX: Actually a big deal</h3>
+            <ul>
+              <li>"Portable Operating System Interface"</li>
+              <li>Shell script: sort of terrible, sort of powerful</li>
+              <li>
+                Several important libraries incl socket.h, time.h, unistd.h
+              </li>
+            </ul>
+          </section>
+          <section>
+            <h3>Meanwhile: GNU</h3>
+            <p>
+              <img data-src="images/stallman.jpg" width="30%" />
+            </p>
+            <ul>
+              <li>
+                1983: Richard Stallman announces GNU Project (GNU's Not Unix)
+              </li>
+              <li>1985: Free Software Foundation founded</li>
+              <li>1987: GNU compiler collection (gcc, gdb, GNU bash)</li>
+            </ul>
+          </section>
+          <section>
+            <h3>Finally: Linux</h3>
+            <p>
+              <img data-src="images/tux.png" width="20%" />
+            </p>
+            <ul>
+              <li>1991: Linus Torvalds announces the Linux kernel</li>
+              <li>Picks up steam in the mid-90s</li>
+              <li>Development is ongoing</li>
+            </ul>
+          </section>
+          <section>
+            <h3>Today: Mac OS X</h3>
+            <img data-src="images/osx-screenshot.png" />
+            <p>Darwin (based on BSD)</p>
+          </section>
+        </section>
+
+        <!-- *nix ecosystem -->
+        <section>
+          <section
+            data-background-image="images/mousetrap.jpg"
+            data-background-size="contain"
+            data-background-color="black"
+          >
+            <div
+              id="title"
+              style="
+                border-radius: 15px;
+                background: rgba(255, 255, 255, 0.8);
+                padding: 20px;
+              "
+            >
+              <div class="title-text-box">
+                <b>
+                  <h3 style="color: rgb(80, 80, 80); text-transform: none">
+                    Unix/POSIX ecosystem
+                  </h3>
+                </b>
+              </div>
+            </div>
+          </section>
+          <section>
+            <h3>Small, specialized tools</h3>
+            <ul>
+              <li>E.g. cd, pwd, ln, cat, less, wc, ...</li>
+              <li>Chained together (like in Mousetrap)</li>
+              <li>Output redirection (for files, streams)</li>
+              <pre><code data-trim>
+             <script type="text/template">
+                 $ echo "__pycache__" > .gitignore
+                 $ rm -rf NonexistentFolder 2>1
+             </script>
+              </code></pre>
+              <li>Piping (pass output to another program)</li>
+              <pre><code>$ ps aux | grep Docker</code></pre>
+              <li>***Suggested google: "pipe vs redirect"</li>
+            </ul>
+          </section>
+          <section>
+            <h3>Users, groups</h3>
+            <ul>
+              <li>Check username:</li>
+              <pre
+                style="text-align: left"
+              ><code data-trim>~ % echo $WHOAMI</code></pre>
+              <li><b>Admin</b>: control over root space/sudo</li>
+              <li>File permissions:</li>
+              <pre style="text-align: left"> <code data-trim>
+            $ ls -al /bin/
+            -rwxr-xr-x    1 root  wheel   714736 Sep 21  2020 libCoreStorage.dylib
+            drwxr-xr-x   14 root  wheel      448 Jul  9  2020 dtrace
+              </code></pre>
+              <li>Suggested google: "output of ls -l command"</li>
+            </ul>
+          </section>
+          <section>
+            <h3>Everything is a file!</h3>
+            <img data-src="images/unix_file_twitter.png" width="75%" />
+          </section>
+          <section>
+            <h3>File system</h3>
+            <p style="text-align: left">Tree-like</p>
+            <p style="text-align: left">
+              Defined (for Linux) in
+              <a
+                href="https://refspecs.linuxfoundation.org/FHS_3.0/fhs/index.html"
+                >FHS</a
+              >
+            </p>
+            <p style="text-align: left">Path leaders:</p>
+            <table>
+              <tr>
+                <th></th>
+                <th></th>
+              </tr>
+              <tr>
+                <td>Root</td>
+                <td>/</td>
+              </tr>
+              <tr>
+                <td>Home</td>
+                <td>/Users/[username]/ or ~/</td>
+              </tr>
+              <tr>
+                <td>Current (relative)</td>
+                <td>./ or no leading slash</td>
+              </tr>
+              <tr>
+                <td>Parent (relative)</td>
+                <td>../</td>
+              </tr>
+              <tr>
+                <th></th>
+                <th></th>
+              </tr>
+            </table>
+          </section>
+          <section>
+            <h3>File system: symbolic links</h3>
+            <img data-src="images/symlink.png" width="70%" />
+            <pre> <code data-trim data-noescape>
+                $ ln -s /path/to/source /path/to/target
+              </code></pre>
+          </section>
+          <section data-visibility="hidden">
+            <h3>Aside: reminder about compiling C</h3>
+            <p>Preprocess -> compile -> assemble -> link</p>
+            <pre><code data-trim>
+              <script type="text/template">
+                  #include <stdio.h>
+
+                  int main(int argc, char* argv[]) {
+                    printf("Hello, world");
+                    return 0;
+                  }
+              </script>
+              </code></pre>
+            <u><p>Binaries and libraries are separate!</p></u>
+          </section>
+          <section>
+            <h3>Where stuff goes: root</h3>
+            <table>
+              <tr>
+                <th></th>
+                <th></th>
+              </tr>
+              <tr>
+                <td>/bin/</td>
+                <td>executable <em>binaries</em> (not a recycling bin)</td>
+              </tr>
+              <tr>
+                <td>/lib/</td>
+                <td><em>libraries</em> (not liberals)</td>
+              </tr>
+              <tr>
+                <td>/dev/</td>
+                <td><em>devices</em> (not developers)</td>
+              </tr>
+              <tr>
+                <td>/etc/</td>
+                <td>configs and DBs [poorly named]</td>
+              </tr>
+              <tr>
+                <td>/sbin/</td>
+                <td>uhhh sort of just /bin/</td>
+              </tr>
+              <tr>
+                <th></th>
+                <th></th>
+              </tr>
+            </table>
+          </section>
+          <section>
+            <h3>Where stuff goes: root (cont)</h3>
+            <table>
+              <tr>
+                <th></th>
+                <th></th>
+              </tr>
+              <tr>
+                <td>/opt/</td>
+                <td>
+                  applications that aren't organized in unix "style" (not in
+                  MacOS)
+                </td>
+              </tr>
+              <tr>
+                <td>/usr/</td>
+                <td>
+                  non-critical applications, accessible to all users [poorly
+                  named]
+                </td>
+              </tr>
+              <tr>
+                <th></th>
+                <th></th>
+              </tr>
+            </table>
+          </section>
+          <section>
+            <h3>Home folder</h3>
+            <p>/Users/[your username]/, ~/</p>
+            <ul>
+              <li>Configs ("dotfiles")</li>
+              <li>Also Documents, Desktop, Music, etc</li>
+              <li>Owned by user</li>
+            </ul>
+          </section>
+          <section>
+            <h3>Three misc. notes</h3>
+            <ol>
+              <li>"unix organization"</li>
               <ul>
-                  <li>vi</li>
-                  <li>virtual memory</li>
-                  <li>TCP/IP support</li>
+                <li>
+                  /bin/, /usr/bin/, /usr/local/bin/, + individual packages
+                </li>
+                <li>packages often have bin/ and lib/ directories</li>
               </ul>
+              <li>Capitalized first letter == MacOS thing</li>
+              <ul>
+                <li>
+                  /<u>A</u>pplications, /<u>L</u>ibrary, /<u>V</u>olumes,
+                  ~/<u>D</u>ocuments, ~/<u>D</u>esktop
+                </li>
+              </ul>
+              <li>/usr/ != /Users/</li>
+            </ol>
+          </section>
+          <section>
+            <h3>The shell</h3>
+            <ul>
+              <li>
+                ~Definition: an interface program run by a terminal (emulator)
+              </li>
+              <li>bourne shell, bash, <b>zsh</b> in newer MacOS versions</li>
+              <li>Interactive vs non-interactive</li>
+              <li>Login vs non-login</li>
+            </ul>
+            <p>
+              Suggested google: "What is the difference between Terminal,
+              Console, Shell, and Command Line?"
+            </p>
+            <p>Suggested google: "What are login and non-login shells?"</p>
+          </section>
+          <section>
+            <h3>The shell: variables</h3>
+            <p>Per-process:</p>
+            <pre><code data-trim data-noescape>
+              $ myvar=99
+              $ echo $myvar
+              99
+              </code></pre>
+            <p>Environment:</p>
+            <pre><code data-trim data-noescape>
+              $ export myvar="abc"
+              $ printenv | grep myvar
+              myvar=abc
+              </code></pre>
+          </section>
+          <section>
+            <h3>The shell: config files</h3>
+            <table>
+              <tr>
+                <th>kind</th>
+                <th>file</th>
+                <th>purpose</th>
+              </tr>
+              <tr>
+                <td>All</td>
+                <td>~/.zshenv</td>
+                <td>environment variables ($EDITOR)</td>
+              </tr>
+              <tr>
+                <td>login</td>
+                <td>~/.zlogin or ~/.zprofile</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>interactive</td>
+                <td>~/.zshrc</td>
+                <td>aliases, utilities, options</td>
+              </tr>
+            </table>
+            <p>.zshenv -> .zprofile -> .zshrc -> .zlogin</p>
+          </section>
+          <section>
+            <h3>The shell: command resolution</h3>
+            <p>$PATH variable</p>
+            <pre><code style="word-wrap;">
+~ % echo $PATH
+/Users/jss009/.pyenv/versions/3.7.2/bin:/usr/local/opt
+/python@3.8/bin:/Users/jss009/Library/Python/3.8/bin:
+/Users/jss009/.cargo/bin:/usr/local/sbin:/Users/jss009/
+.ebcli-virtual-env/executable:/Users/jss009/.cargo/bin
+~ % which python
+/usr/bin/python
+              </code></pre>
+          </section>
+          <section>
+            <h3>Homebrew</h3>
+            <ul>
+              <li>OS-wide package manager</li>
+              <li>
+                Typically straightforward, but breadth can lead to weird errors
+              </li>
+              <li>
+                Locate packages within /usr/local/Cellar/, and binaries
+                symlinked into /usr/local/bin AND /usr/local/opt
+              </li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- python -->
+        <section>
+          <section
+            data-background-image="images/monsters.jpg"
+            data-background-size="contain"
+            data-background-color="black"
+          >
+            <div
+              id="title"
+              style="
+                border-radius: 15px;
+                background: rgba(255, 255, 255, 0.8);
+                padding: 20px;
+              "
+            >
+              <div class="title-text-box">
+                <b>
+                  <h3 style="color: rgb(80, 80, 80); text-transform: none">
+                    Here be monsters: Python environments
+                  </h3>
+                </b>
+              </div>
+            </div>
+          </section>
+          <section>
+            <h3>System Python</h3>
+            <ul>
+              <li>Core binary: /usr/bin/python</li>
+              <li>Deprecated (2.7)</li>
+            </ul>
+          </section>
+          <section>
+            <h3>Actual Python</h3>
+            <div style="text-align: left">
+              <p>Binary:</p>
+              <table>
+                <tr>
+                  <th></th>
+                  <th></th>
+                </tr>
+                <tr>
+                  <td>/usr/bin/python3</td>
+                  <td>if installed w/ xcode</td>
+                </tr>
+                <tr>
+                  <td>/usr/local/bin</td>
+                  <td>if installed via IDLE</td>
+                </tr>
+                <tr>
+                  <td>~/Library/Python/3.X/</td>
+                  <td>if installed for user only</td>
+                </tr>
+              </table>
+            </div>
+          </section>
+          <section>
+            <h3>Python modules</h3>
+            <div style="text-align: left">
+              <table>
+                <tr>
+                  <th></th>
+                  <th></th>
+                </tr>
+                <tr>
+                  <td>stdlib</td>
+                  <td>[python]/lib/python3.X/</td>
+                </tr>
+                <tr>
+                  <td>PIP-installed</td>
+                  <td>[python]/lib/python3.X/site-packages/</td>
+                </tr>
+                <tr>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </table>
+            </div>
+          </section>
+          <section>
+            <h3>Managing software requirements</h3>
+            <ul>
+              <li>
+                <b>Package manager</b>: retrieve user-created libraries from
+                remote repo
+              </li>
+              <li>
+                <b>Dependency manager</b>: enforcing correct versions of
+                binaries and libraries
+              </li>
+              <li>
+                <b>Environment manager</b>: work within individual software
+                feifdoms with specific versions of libraries
+              </li>
+              <li>
+                <b>Python version manager</b>: use specific Python versions
+                depending on project needs
+              </li>
+            </ul>
+          </section>
+          <section>
+            <h3>Toolkit options</h3>
+            <table>
+              <tr>
+                <td>PIP</td>
+                <td>Package</td>
+                <td>Built-in. Installs to [python]/lib/site-packages</td>
+              </tr>
+              <tr>
+                <td>Conda</td>
+                <td>Package/environment/depencency/version</td>
+                <td>Installs to ~/opt/</td>
+              </tr>
+            </table>
+          </section>
+          <section>
+            <h3>Toolkit options, cont.</h3>
+            <table>
+              <tr>
+                <td>venv, virtualenv</td>
+                <td>environment</td>
+                <td>
+                  Installs and provides activation scripts within project dir
+                </td>
+              </tr>
+              <tr>
+                <td>pyenv</td>
+                <td>version</td>
+                <td>
+                  Located in ~/.pyenv/, uses 'shims'/script magic in ~/.profile
+                </td>
+              </tr>
+            </table>
+          </section>
+          <section>
+            <h3>Toolkit options, cont.</h3>
+            <table>
+              <tr>
+                <td>pipenv</td>
+                <td>environment/dependency/version (sort of)</td>
+                <td>Located in ~/.local/share/virtualenvs</td>
+              </tr>
+            </table>
+          </section>
+          <section>
+            <h3>New hotness?</h3>
+            <img data-src="images/rocket_power.jpg" />
+            <p></p>
+            <ul>
+              <li>Poetry??</li>
+              <li>PDM??</li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- action items -->
+        <section>
+          <section>
+            <h3>Actionable information</h3>
+          </section>
+          <section>
+            <h3>$PATH is the root of all evil</h3>
+            <img data-src="images/search.png" />
+            <p>
+              $PATH issues are the most common reason for missing commands or
+              failed installs
+            </p>
+          </section>
+          <section>
+            <h3>Make `echo $PATH` readable</h3>
+            <pre><code data-trim>
+              ~ % tr ':' '\n' <<< '$PATH'
+                </code></pre>
+            <p>Shortcut (in ~/.zshrc):</p>
+            <pre><code data-trim>
+              ~ % alias printpath="tr ':' '\n' <<< '$PATH'"                #"
+                </code></pre>
+          </section>
+          <section>
+            <h3>Clean up your $PATH</h3>
+            <p>Check the usual suspects:</p>
+            <div style="text-align: left">
+              <ul>
+                <li>~/.bashrc</li>
+                <li>~/.bash_profile</li>
+                <li>~/.login</li>
+                <li>~/.zshrc</li>
+                <li>~/.zprofile</li>
+                <li>~/.zlogin</li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            <h3>Clean up your $PATH</h3>
+            <div style="text-align: left">
+              <p>In .zshenv or .zshrc:</p>
+              <pre><code data-trim data-line-numbers>
+path+=('/Users/jss009/.cargo/bin')  # append
+path=('/Users/jss009/.rvm/bin')  # prepend
+export PATH
+              </code></pre>
+            </div>
+          </section>
+          <section>
+            <h3>Use environment managers in every major project</h3>
+            <ul>
+              <li>Good for mental health and well-being</li>
+              <li>Good for reproducibility! [1]</li>
+            </ul>
+            <small>
+              [1] Sandve GK, Nekrutenko A, Taylor J, Hovig E (2013) Ten Simple
+              Rules for Reproducible Computational Research. PLOS Computational
+              Biology 9(10): e1003285.
+              https://doi.org/10.1371/journal.pcbi.1003285
+            </small>
+          </section>
+          <section>
+            <h3>What is a "major project"?</h3>
+            <ul>
+              <li>
+                Something that someone else might want to run again (i.e. a
+                publication)
+              </li>
+              <li>Something that you might want to run again?</li>
+              <li>Any tool intended for wider use</li>
+            </ul>
+            <img data-src="images/code-available.png" width="60%" />
+          </section>
+          <section>
+            <h3>Which to use?</h3>
+            <p>pipenv is probably fine!</p>
+            <pre style="text-align: left">
+~ % python3 -m pip install pipenv  # only need to do once
+~ % cd to/your/project
+~ % pipenv shell
+(project) ~ % which python  # now in a self-contained environment!
+/Users/jss009/.local/share/virtualenvs/project-lsdkfdf/
+              </pre
+            >
+          </section>
+          <section>
+            <h3>IDEs make it easy, too</h3>
+            <img data-src="images/vscode.png" />
+            <img data-src="images/pycharm.png" />
+          </section>
+          <section>
+            <h3>Troubleshooting PIP</h3>
+            <pre>
+~ % which python3
+~ % which pip  # or which pip3
+~ % pip -V
+~ % pip show requests  # or any other package
+              </pre>
+          </section>
+          <section>
+            <h3>Dealing with Conda</h3>
+            <img data-src="images/condas.webp" width="40%" />
+            <ul>
+              <li>
+                Retrieves <em>recipes</em> from <em>channels</em> (CondaForge,
+                BioConda)
+              </li>
+              <li>
+                Multiple install options, but you should just use Miniconda
+              </li>
+            </ul>
+          </section>
+          <section>
+            <h3>Manage Python3 with Homebrew</h3>
+            <pre> <code data-trim data-noescape>
+              ~ % brew install python3
+              ~ % brew link python3
+            </code></pre>
+            <p>Check for stowaways:</p>
+            <pre><code data-trim>
+            ~ % brew list | grep python
+            </code></pre>
+          </section>
+          <section>
+            <h3>Manage multiple Python3 versions with Homebrew</h3>
+            <pre><code data-trim data-noescape>
+              ~ % brew install python   # install 3.9
+              ~ % brew install python@3.7
+              ~ % brew install python@3.8
+              </code></pre>
+            <p>
+              Links Python 3.9 (newest) to /usr/local/bin, but also adds 3.7 and
+              3.8 to /usr/local/opt
+            </p>
+            <pre><code data-trim data-noescape>
+              ~ % ll /usr/local/opt | grep python
+              lrwxr-xr-x 26 jss009adm 26 May 16:49 python -> ../Cellar/python@3.9/3.9.5
+              lrwxr-xr-x 26 jss009adm 26 May 16:49 python3 -> ../Cellar/python@3.9/3.9.5
+              lrwxr-xr-x 26 jss009adm 26 May 16:49 python@3 -> ../Cellar/python@3.9/3.9.5
+              lrwxr-xr-x 29 jss009adm 22 Jun 16:10 python@3.7 -> ../Cellar/python@3.7/3.7.10_3
+              lrwxr-xr-x 28 jss009adm  5 Nov  2020 python@3.8 -> ../Cellar/python@3.8/3.8.6_1
+              lrwxr-xr-x 26 jss009adm 26 May 16:49 python@3.9 -> ../Cellar/python@3.9/3.9.5
+              </code></pre>
           </section>
         </section>
       </div>
